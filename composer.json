@@ -15,7 +15,6 @@
       "homepage": "http://erfanebrahimi.ir/"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "guzzlehttp/guzzle": "^7.0",
     "ext-json": "*"
