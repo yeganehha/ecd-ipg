@@ -1,0 +1,23 @@
+{
+  "name": "yeganehha/ecd-ipg",
+  "description": "ECD IPG Package",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Yeganehha\\EcdIpg\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Erfan Ebrahimi",
+      "email": "me@erfanebrahimi.ir",
+      "homepage": "http://erfanebrahimi.ir/"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "keywords": [
+    "ecd-ipg"
+  ]
+}
