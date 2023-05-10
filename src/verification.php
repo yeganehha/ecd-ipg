@@ -3,6 +3,7 @@
 namespace Yeganehha\EcdIpg;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Yeganehha\EcdIpg\AbstractClass\Ecd;
 
 class verification extends Ecd
 {

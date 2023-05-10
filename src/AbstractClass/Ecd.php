@@ -1,6 +1,6 @@
 <?php
 
-namespace Yeganehha\EcdIpg;
+namespace Yeganehha\EcdIpg\AbstractClass;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;

@@ -3,7 +3,7 @@
 namespace Yeganehha\EcdIpg;
 
 
-use GuzzleHttp\Client;
+use Yeganehha\EcdIpg\AbstractClass\Ecd;
 
 class purchase extends Ecd
 {
