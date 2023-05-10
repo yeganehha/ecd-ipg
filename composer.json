@@ -1,7 +1,6 @@
 {
   "name": "yeganehha/ecd-ipg",
   "description": "ECD IPG Package",
-  "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
