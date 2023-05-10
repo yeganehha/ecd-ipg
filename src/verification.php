@@ -48,6 +48,21 @@ class verification extends Ecd
         return false;
     }
 
+
+    /**
+     * Reverse current transaction to payer
+     * @return bool
+     * @throws GuzzleException
+     */
+    public function reverse()
+    {
+        $result = $this->call('PayReverse' , ['Token' => $this->token]);
+        if ( $result->State === "1" or $result->State === 1 ){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Is Payment success
      * @return boolean
