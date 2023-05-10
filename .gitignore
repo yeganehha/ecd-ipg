@@ -1,3 +1,6 @@
 .idea
 PurePHPSample-master.zip
 PurePHPSample-master
+composer.lock
+vendor
+index.php

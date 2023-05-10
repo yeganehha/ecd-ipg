@@ -16,7 +16,9 @@
     }
   ],
   "minimum-stability": "dev",
-  "require": {},
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
   "keywords": [
     "ecd-ipg"
   ]
