@@ -23,6 +23,7 @@ abstract class Ecd
     protected $status;
     protected $errorCode;
     protected $errorDescription;
+    protected $timeZone;
 
 
     /**
@@ -44,6 +45,7 @@ abstract class Ecd
         else
             $this->english();
 
+        $this->timeZone = $timeZone;
         $date = new \DateTime("now", new \DateTimeZone($timeZone));
         $this->time = $date->format("h:i");
         $this->date = $date->format("Y-m-d");
