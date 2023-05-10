@@ -13,10 +13,7 @@ class purchase extends Ecd
     protected $nationalCode ;
     protected $mobile ;
     protected $additionalData = array();
-    private $errorCode ;
-    private $errorDescription ;
     private $res ;
-    private $status ;
 
 
     /**
@@ -191,24 +188,6 @@ class purchase extends Ecd
             $this->key;
 
         return sha1($params_string);
-    }
-
-    /**
-     * get Error Code
-     * @return mixed
-     */
-    public function getErrorCode()
-    {
-        return $this->errorCode;
-    }
-
-    /**
-     * Get error message
-     * @return string|null
-     */
-    public function getErrorDescription()
-    {
-        return $this->errorDescription;
     }
 
     /**

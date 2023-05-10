@@ -6,9 +6,6 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class verification extends Ecd
 {
-    private $status;
-    private $errorCode;
-    private $errorDescription;
     private $reference_number;
     private $tracking_number;
     private $buy_id;
@@ -72,23 +69,6 @@ class verification extends Ecd
         return $this->status;
     }
 
-    /**
-     * get Error Code
-     * @return mixed
-     */
-    public function getErrorCode()
-    {
-        return $this->errorCode;
-    }
-
-    /**
-     * Get error message
-     * @return string|null
-     */
-    public function getErrorDescription()
-    {
-        return $this->errorDescription;
-    }
 
     /**
      * get Reference Number

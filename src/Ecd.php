@@ -19,6 +19,12 @@ abstract class Ecd
     private $timeOut = 5 ;
     private $URI = 'https://ecd.shaparak.ir/ipg_ecd/';
 
+
+    protected $status;
+    protected $errorCode;
+    protected $errorDescription;
+
+
     /**
      * @param string|int $terminal_number
      * @param string $key
@@ -176,5 +182,24 @@ abstract class Ecd
 
         $result = $response->getBody()->getContents();
         return json_decode($result);
+    }
+
+
+    /**
+     * get Error Code
+     * @return mixed
+     */
+    public function getErrorCode()
+    {
+        return $this->errorCode;
+    }
+
+    /**
+     * Get error message
+     * @return string|null
+     */
+    public function getErrorDescription()
+    {
+        return $this->errorDescription;
     }
 }
