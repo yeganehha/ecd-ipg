@@ -72,20 +72,28 @@ class purchase extends Ecd
     public function pay()
     {
         if ( $this->status  === true ) {
-            $html = '
-            <script type="text/javascript">
-                window.addEventListener("load", function(){
-                    document.getElementById(\'form\').submit();
-                });
-            </script>
-            <form action="https://ecd.shaparak.ir/ipg_ecd/PayStart" method="POST" id="form">
-                <input name="Token" type="hidden" value="' . $this->res . '"/>
-            </form>
-        ';
-            echo $html;
+            echo $this->getHtmlRedirectionForm();
             exit;
         }
         return $this;
+    }
+
+    /**
+     * get html form for redirect user to gateway
+     * @return string
+     */
+    public function getHtmlRedirectionForm()
+    {
+        return '
+            <script type="text/javascript">
+                window.addEventListener("load", function(){
+                    document.getElementById(\'ECDForm-'.time().'\').submit();
+                });
+            </script>
+            <form action="https://ecd.shaparak.ir/ipg_ecd/PayStart" method="POST" id="ECDForm-'.time().'">
+                <input name="Token" type="hidden" value="' . $this->res . '"/>
+            </form>
+        ';
     }
 
     /**
