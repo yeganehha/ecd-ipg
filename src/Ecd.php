@@ -2,6 +2,9 @@
 
 namespace Yeganehha\EcdIpg;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+
 abstract class Ecd
 {
     protected $key;
@@ -12,6 +15,9 @@ abstract class Ecd
 
     protected $amount ;
     protected $convertRate ;
+
+    private $timeOut = 5 ;
+    private $URI = 'https://ecd.shaparak.ir/ipg_ecd/';
 
     /**
      * @param string|int $terminal_number
@@ -137,5 +143,38 @@ abstract class Ecd
 
         $this->amount = $amount  * $this->convertRate;
         return $this;
+    }
+
+
+    /**
+     * Set Time out for all request to gateway
+     * @param int $timeOut
+     * @return $this
+     */
+    public function setTimeOut($timeOut)
+    {
+        $this->timeOut = (int) $timeOut;
+        return $this;
+    }
+
+    /**
+     * @param $scope
+     * @param $data
+     * @param $isPost
+     * @return mixed
+     * @throws GuzzleException
+     */
+    protected function call($scope  , $data  = null , $isPost = true)
+    {
+        $client = new Client(['base_uri' => trim($this->URI , '/') . '/','timeout'  => $this->timeOut]);
+        if ( $isPost === true)
+            $response = $client->request('POST' , $scope , array('form_params' => $data));
+        elseif ( $isPost === false)
+            $response = $client->request('GET' , $scope , array('query' => $data));
+        else
+            $response = $client->request(strtoupper($isPost) , $scope ,  $data);
+
+        $result = $response->getBody()->getContents();
+        return json_decode($result);
     }
 }
