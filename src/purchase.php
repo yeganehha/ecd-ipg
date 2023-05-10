@@ -19,6 +19,13 @@ class purchase extends Ecd
     private $status ;
 
 
+    /**
+     * Generate new transaction for gateway
+     * @param int|null $amount
+     * @param int|null $buyId
+     * @return $this
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function generateTransaction($amount = null , $buyId = null) {
         if ( $amount != null )
             $this->setAmount($amount);
@@ -83,6 +90,12 @@ class purchase extends Ecd
         }
         return $this;
     }
+
+    /**
+     * set callback url
+     * @param string $callbackUrl
+     * @return $this
+     */
     public function setCallbackUrl($callbackUrl)
     {
         $this->callbackUrl = $callbackUrl;
@@ -90,6 +103,11 @@ class purchase extends Ecd
     }
 
 
+    /**
+     * set buy Id
+     * @param string $buyId
+     * @return $this
+     */
     public function setBuyId($buyId)
     {
         $this->buyId = $buyId;
@@ -97,6 +115,11 @@ class purchase extends Ecd
     }
 
 
+    /**
+     * set payer nationalCode ( optional )
+     * @param string $nationalCode
+     * @return $this
+     */
     public function setNationalCode($nationalCode)
     {
         $this->nationalCode = $nationalCode;
@@ -104,6 +127,11 @@ class purchase extends Ecd
     }
 
 
+    /**
+     * set payer mobile number ( optional )
+     * @param string $mobile
+     * @return $this
+     */
     public function setMobile($mobile)
     {
         $this->mobile = $mobile;
@@ -111,6 +139,12 @@ class purchase extends Ecd
     }
 
 
+    /**
+     * add additional data ( optional )
+     * @param string|array $variable
+     * @param mixed|null $value
+     * @return $this
+     */
     public function addAdditionalData($variable , $value = null )
     {
         if ( is_array($variable) )
@@ -124,6 +158,11 @@ class purchase extends Ecd
         return $this;
     }
 
+    /**
+     * set additional data ( optional )
+     * @param mixed $additionalData
+     * @return $this
+     */
     public function setAdditionalData($additionalData)
     {
         $this->additionalData = (array) $additionalData;
@@ -131,6 +170,7 @@ class purchase extends Ecd
     }
 
     /**
+     * add buy number ( optional )
      * @param mixed $buyNumber
      */
     public function setBuyNumber($buyNumber)
