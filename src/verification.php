@@ -4,6 +4,7 @@ namespace Yeganehha\EcdIpg;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Yeganehha\EcdIpg\AbstractClass\Ecd;
+use Yeganehha\EcdIpg\Model\Transaction;
 
 class verification extends Ecd
 {
@@ -11,6 +12,9 @@ class verification extends Ecd
     private $tracking_number;
     private $buy_id;
     private $token;
+    private $transaction = null;
+    private $card_mask = null;
+    private $additional_data = null;
 
     /**
      * check transaction result
@@ -96,5 +100,41 @@ class verification extends Ecd
     public function getBuyId()
     {
         return $this->buy_id;
+    }
+
+    /**
+     * get mask of payer card
+     * @return string|null
+     * @throws \Exception
+     */
+    public function getMaskCard()
+    {
+        if ( $this->card_mask != null )
+            return $this->card_mask;
+        $this->getTransaction();
+        $this->card_mask = $this->transaction->getCardNumber();
+        return  $this->card_mask;
+    }
+
+    /**
+     * get mask of payer card
+     * @return string|null
+     * @throws \Exception
+     */
+    public function getAdditionalData()
+    {
+        if ( $this->additional_data != null )
+            return $this->additional_data;
+        $this->getTransaction();
+        $this->additional_data = $this->transaction->getAdditionalData();
+        return  $this->additional_data;
+    }
+
+    private function getTransaction()
+    {
+        if ( $this->transaction === null ) {
+            $baseOnRial = $this->convertRate == 1;
+            $this->transaction = transactions::instance($this->terminal_number, $this->key, $baseOnRial, $this->language, $this->timeZone)->getByBuyID($this->buy_id);
+        }
     }
 }
