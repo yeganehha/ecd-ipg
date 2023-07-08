@@ -48,7 +48,7 @@ abstract class Ecd
         $this->timeZone = $timeZone;
         $date = new \DateTime("now", new \DateTimeZone($timeZone));
         $this->time = $date->format("h:i");
-        $this->date = $date->format("Y-m-d");
+        $this->date = $date->format("Y/m/d");
 
         if ( $baseOnRial )
             $this->baseOnRial();
@@ -176,9 +176,9 @@ abstract class Ecd
     {
         $client = new Client(['base_uri' => trim($this->URI , '/') . '/','timeout'  => $this->timeOut]);
         if ( $isPost === true)
-            $response = $client->request('POST' , $scope , array('form_params' => $data));
+            $response = $client->request('POST' , $scope , array('json' => $data , "http_errors" => false));
         elseif ( $isPost === false)
-            $response = $client->request('GET' , $scope , array('query' => $data));
+            $response = $client->request('GET' , $scope , array('query' => $data , "http_errors" => false));
         else
             $response = $client->request(strtoupper($isPost) , $scope ,  $data);
 

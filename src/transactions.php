@@ -124,6 +124,24 @@ class transactions extends Ecd
     }
 
     /**
+     * all transactions of today
+     * @return Transaction|null
+     * @throws \Exception
+     */
+    public function getByToken($Token)
+    {
+        $this->filterByToken($Token);
+        $data = $this->filters;
+        $data['TerminalNumber'] = $this->terminal_number;
+        $data['Key'] = sha1($this->key);
+        $transactions = $this->get($data);
+        if (  is_array($transactions) and count($transactions) == 1 ) {
+            return $transactions[0];
+        }
+        return null;
+    }
+
+    /**
      * @throws GuzzleException
      * @throws \Exception
      */

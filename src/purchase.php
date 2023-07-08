@@ -14,6 +14,7 @@ class purchase extends Ecd
     protected $mobile ;
     protected $additionalData = array();
     private $res ;
+    private $payLink = 'https://ecd.shaparak.ir/ipg_ecd/PayStart';
 
 
     /**
@@ -69,11 +70,32 @@ class purchase extends Ecd
      * redirect user to gateway.
      * @return $this|void
      */
-    public function pay()
+    public function payRaw()
     {
         if ( $this->status  === true ) {
             echo $this->getHtmlRedirectionForm();
             exit;
+        }
+        return $this;
+    }
+
+    /**
+     * redirect user to gateway.
+     * @return $this|array
+     */
+    public function pay()
+    {
+        if ( $this->status  === true ) {
+            return array(
+                'html' => $this->getHtmlRedirectionForm(),
+                'form' => array(
+                    'link' => $this->payLink ,
+                    'method' => 'POST',
+                    'form_params' => array(
+                        'Token' =>  $this->res
+                    )
+                )
+            );
         }
         return $this;
     }
@@ -90,7 +112,7 @@ class purchase extends Ecd
                     document.getElementById(\'ECDForm-'.time().'\').submit();
                 });
             </script>
-            <form action="https://ecd.shaparak.ir/ipg_ecd/PayStart" method="POST" id="ECDForm-'.time().'">
+            <form action="'.$this->payLink.'" method="POST" id="ECDForm-'.time().'">
                 <input name="Token" type="hidden" value="' . $this->res . '"/>
             </form>
         ';
