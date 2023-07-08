@@ -134,7 +134,9 @@ class verification extends Ecd
     {
         if ( $this->transaction === null ) {
             $baseOnRial = $this->convertRate == 1;
-            $this->transaction = transactions::instance($this->terminal_number, $this->key, $baseOnRial, $this->language, $this->timeZone)->getByBuyID($this->buy_id);
+            $this->transaction = transactions::instance($this->terminal_number, $this->key, $baseOnRial, $this->language, $this->timeZone)
+                ->filterByStatus(\Yeganehha\EcdIpg\Enums\TransactionStatus::$CONFIRMED)
+                ->getByToken($this->token);
         }
     }
 }

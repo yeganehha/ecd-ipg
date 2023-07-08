@@ -1,6 +1,6 @@
 <?php
 
-namespace Yeganehha\EcdIpg;
+namespace Yeganehha\EcdIpg\Enums;
 
 class TransactionStatus
 {
