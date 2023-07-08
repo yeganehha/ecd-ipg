@@ -1,7 +1,6 @@
 {
   "name": "yeganehha/ecd-ipg",
   "description": "ECD IPG Package",
-  "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
@@ -15,7 +14,7 @@
       "homepage": "http://erfanebrahimi.ir/"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require": {
     "guzzlehttp/guzzle": "^7.0",
     "ext-json": "*"
