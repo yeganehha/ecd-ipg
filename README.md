@@ -1,1 +1,1 @@
-# ecd-ipg
+# ecd-ipg package
