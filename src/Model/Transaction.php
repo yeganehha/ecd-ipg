@@ -173,7 +173,7 @@ class Transaction extends Ecd
      */
     public function getAdditionalData()
     {
-        return json_decode($this->itemInformation->AdditionalData, true);
+        return $this->itemInformation->AdditionalData ? json_decode($this->itemInformation->AdditionalData, true) : array();
     }
 
 }
